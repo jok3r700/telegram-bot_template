@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 val ktor_version = libs.versions.ktor.get()
 val jvmTargetVersion = JavaVersion.VERSION_17
 
@@ -30,16 +32,11 @@ dependencies {
     implementation("io.ktor:ktor-server-netty-jvm:$ktor_version")
 }
 
-tasks {
-    compileJava {
-        targetCompatibility = jvmTargetVersion.majorVersion
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.valueOf(jvmTargetVersion.majorVersion)
     }
-    compileKotlin {
-        kotlinOptions {
-            jvmTarget = jvmTargetVersion.majorVersion
-            javaParameters = true
-        }
-    }
+    jvmToolchain(jvmTargetVersion.majorVersion.toInt())
 }
 
 tasks.create("stage").dependsOn("installDist")
