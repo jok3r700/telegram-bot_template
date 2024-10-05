@@ -1,4 +1,4 @@
 ktgram:
   bot:
-    - token: TOKEN
+    - token: ${BOT_TOKEN}
 #    - token: ANOTHER_TOKEN
