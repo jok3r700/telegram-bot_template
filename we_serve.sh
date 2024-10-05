@@ -1,1 +1,1 @@
-./gradlew run
+/bin/sh ./gradlew run
